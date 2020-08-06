@@ -15,9 +15,15 @@ pipeline {
     }
     stage('Build Docker Image') {
       steps {
+        withCredentials([
+            usernamePassword(credentialsId: 'dockerio',
+              usernameVariable: 'username',
+              passwordVariable: 'password')
+          ])
         container('docker') {  
-          sh "docker build -t vividlukeloresch/promo-app:dev ."  // when we run docker in this step, we're running it via a shell on the docker build-pod container, 
-          sh "docker push vividlukeloresch/promo-app:dev"        // which is just connecting to the host docker deaemon
+          sh "docker build -t vmartinvega/promo-app:dev ."  // when we run in this step, we're running it via a shell on the docker build-pod container, 
+          sh "docker login --username=$username --password=$password"        // which is just connecting to the host docker deaemon
+          sh "docker push vmartinvega/promo-app:dev"        // which is just connecting to the host docker deaemon
         }
       }
     }
