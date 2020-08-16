@@ -10,6 +10,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {  // no container directive is needed as the maven container is the default
+        sh "echo 'TRACEABILITY: Build from sonda'"
         sh "mvn clean package"   
       }
     }
