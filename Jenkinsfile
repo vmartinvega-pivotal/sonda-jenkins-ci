@@ -20,9 +20,9 @@ pipeline {
       }
       steps {
         container('docker') {  
-          sh "docker build -t vmartinvega/promo-app:dev ."  // when we run in this step, we're running it via a shell on the docker build-pod container, 
+          sh "docker build -t vmartinvega/sonda-app:latest ."  // when we run in this step, we're running it via a shell on the docker build-pod container, 
           sh "docker login --username=$DOCKER_CREDS_USR --password=$DOCKER_CREDS_PSW"        // which is just connecting to the host docker deaemon
-          sh "docker push vmartinvega/promo-app:dev"        // which is just connecting to the host docker deaemon
+          sh "docker push vmartinvega/sonda-app:latest"        // which is just connecting to the host docker deaemon
         }
       }
     }
