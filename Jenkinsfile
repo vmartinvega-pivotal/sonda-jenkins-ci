@@ -16,7 +16,7 @@ pipeline {
     }
     stage('Build Docker Image') {
       environment {
-        DOCKER_CREDS = credentials('dockerio')
+        DOCKER_CREDS = credentials('dockerio')  // A jenkins credentials (username/password) is expected in jenkins (craete it before running)
       }
       steps {
         container('docker') {  
